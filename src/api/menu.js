@@ -1,9 +1,11 @@
-import request from '@/utils/request'
+import request from "@/utils/request";
 
 // 获取路由
 export const getRouters = () => {
   return request({
-    url: '/getRouters',
-    method: 'get'
-  })
-}
+    url: `/intellect/plat/getRouters`,
+    method: "get",
+  });
+};
+
+

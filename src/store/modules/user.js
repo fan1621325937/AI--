@@ -1,6 +1,6 @@
 import { login, logout, getInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import defAva from '@/assets/images/profile.jpg'
+import defAva from '@/assets/images/profile.png'
 
 const useUserStore = defineStore(
   'user',
@@ -11,7 +11,7 @@ const useUserStore = defineStore(
       name: '',
       avatar: '',
       roles: [],
-      permissions: []
+      permissions: [],
     }),
     actions: {
       // 登录

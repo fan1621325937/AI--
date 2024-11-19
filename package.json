@@ -18,7 +18,8 @@
   "dependencies": {
     "@element-plus/icons-vue": "2.3.1",
     "@vueup/vue-quill": "1.2.0",
-    "@vueuse/core": "10.11.0",
+    "@vueuse/core": "^10.11.0",
+    "amfe-flexible": "^2.2.1",
     "axios": "0.28.1",
     "echarts": "5.5.1",
     "element-plus": "2.7.6",
@@ -26,8 +27,10 @@
     "fuse.js": "6.6.2",
     "js-cookie": "3.0.5",
     "jsencrypt": "3.3.2",
+    "moment": "^2.30.1",
     "nprogress": "0.2.0",
     "pinia": "2.1.7",
+    "postcss-pxtorem": "^6.1.0",
     "vue": "3.4.31",
     "vue-cropper": "1.1.1",
     "vue-router": "4.4.0"
@@ -35,10 +38,11 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "5.0.5",
     "sass": "1.77.5",
-    "unplugin-auto-import": "0.17.6",
+    "unplugin-auto-import": "^0.17.6",
+    "unplugin-vue-components": "^0.27.4",
+    "unplugin-vue-setup-extend-plus": "1.0.1",
     "vite": "5.3.2",
     "vite-plugin-compression": "0.5.1",
-    "vite-plugin-svg-icons": "2.0.1",
-    "unplugin-vue-setup-extend-plus": "1.0.1"
+    "vite-plugin-svg-icons": "2.0.1"
   }
 }

@@ -1,0 +1,31 @@
+// only scss variables
+
+$--colors: (
+  "primary": (
+    "base": #589ef8,
+  ),
+);
+
+@forward "element-plus/theme-chalk/src/dark/var.scss" with (
+  $colors: $--colors,
+  $bg-color: (
+    "page": #003c64,
+    "": #02446f,
+    "overlay": rgba(19, 144, 212, 0.1),
+    "customize-1": rgba(108, 169, 240, 0.18),
+    //卡片颜色
+    "customize-2": rgba(108, 169, 240, 0.4),
+    //卡片hover效果
+  ),
+  $text-color: (
+    "primary": rgba(255, 255, 255, 1),
+    "regular": rgba(255, 255, 255, 0.9),
+  ),
+  $fill-color: (
+    "blank": rgba(0, 104, 161, 0.5),
+  ),
+  $border-color: (
+    "": #02446f,
+    "light": rgba(0, 104, 161, 0.5),
+  )
+);

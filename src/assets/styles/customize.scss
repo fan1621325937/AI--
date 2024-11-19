@@ -1,0 +1,312 @@
+//flex一把梭
+.fdc {
+  display: flex;
+  flex-direction: column;
+}
+
+.fb {
+  display: flex;
+  justify-content: space-between;
+}
+.fcc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fce {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.fss {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.fsc {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.fse {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.fec {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.fbc {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fac {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.fvc {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.fdcc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.fdsc {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.fdss {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.fdse {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.fdbc {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.fdas {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.fdvc {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.fdac {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.fdbs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.fdes {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.fcs {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.ac {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.ab {
+  position: absolute;
+}
+.re {
+  position: relative;
+}
+.ty50 {
+  transform: translateY(-50%);
+}
+.tx50 {
+  transform: translateX(-50%);
+}
+
+.f1 {
+  flex: 1;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.g5 {
+  gap: 5px;
+}
+.g10 {
+  gap: 10px;
+}
+.g20 {
+  gap: 20px;
+}
+
+.fs12 {
+  font-size: 12px;
+  letter-spacing: 0px;
+}
+
+.fs12-400 {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+
+.fs14 {
+  font-size: 14px;
+  letter-spacing: 0px;
+}
+
+.fs14-500 {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0px;
+}
+
+.fs14-400 {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+
+.fs14-700 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0px;
+}
+.fs16 {
+  font-size: 16px;
+  letter-spacing: 0px;
+}
+.fs16-700 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0px;
+}
+
+.fs24 {
+  font-size: 24px;
+  letter-spacing: 0px;
+}
+
+.fs24-700 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0px;
+}
+
+.p5 {
+  padding: 5px;
+}
+.p10 {
+  padding: 10px;
+}
+.p20 {
+  padding: 20px;
+}
+.pl5 {
+  padding-left: 5px;
+}
+.pl10 {
+  padding-left: 10px;
+}
+.pl20 {
+  padding-left: 20px;
+}
+
+.pr5 {
+  padding-right: 5px;
+}
+.pr10 {
+  padding-right: 10px;
+}
+.pr20 {
+  padding-right: 20px;
+}
+
+.pt5 {
+  padding-top: 5px;
+}
+.pt10 {
+  padding-top: 10px;
+}
+.pt20 {
+  padding-top: 20px;
+}
+
+.pb5 {
+  padding-bottom: 5px;
+}
+.pb10 {
+  padding-bottom: 10px;
+}
+.pb20 {
+  padding-bottom: 20px;
+}
+
+.m5 {
+  margin: 5px;
+}
+.m10 {
+  margin: 10px;
+}
+.m20 {
+  margin: 20px;
+}
+.ml5 {
+  margin-left: 5px;
+}
+.ml10 {
+  margin-left: 10px;
+}
+.ml20 {
+  margin-left: 20px;
+}
+
+.mr5 {
+  margin-right: 5px;
+}
+.mr10 {
+  margin-right: 10px;
+}
+.mr20 {
+  margin-right: 20px;
+}
+
+.mt5 {
+  margin-top: 5px;
+}
+.mt10 {
+  margin-top: 10px;
+}
+.mt20 {
+  margin-top: 20px;
+}
+
+.mb5 {
+  margin-bottom: 5px;
+}
+.mb10 {
+  margin-bottom: 10px;
+}
+.mb20 {
+  margin-bottom: 20px;
+}
