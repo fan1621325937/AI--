@@ -21,7 +21,7 @@
     "@vueuse/core": "^10.11.0",
     "amfe-flexible": "^2.2.1",
     "axios": "0.28.1",
-    "echarts": "5.5.1",
+    "echarts": "^5.5.1",
     "element-plus": "2.7.6",
     "file-saver": "2.0.5",
     "fuse.js": "6.6.2",
@@ -33,7 +33,10 @@
     "postcss-pxtorem": "^6.1.0",
     "vue": "3.4.31",
     "vue-cropper": "1.1.1",
-    "vue-router": "4.4.0"
+    "vue-draggable-plus": "^0.6.0",
+    "vue-router": "4.4.0",
+    "vxe-pc-ui": "^4.3.1",
+    "vxe-table": "^4.9.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "5.0.5",

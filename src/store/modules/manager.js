@@ -3,6 +3,17 @@ const manager = defineStore("manager", {
   state: () => {
     return {
       platformDictValue: 0, //平台字典值
+      //每个平台的可视化调度主页
+      platformIndex: {
+        // defaultHomepage默认首页
+        0: "defaultHomepage", //融合平台总平台
+        1: "defaultHomepage", //电子封条
+        2: "defaultHomepage", //打钻
+        3: "defaultHomepage", //人员防冲
+        4: "defaultHomepage", //可视测温
+        5: "defaultHomepage", //煤矿流量
+        6: "coalFace", //采煤工作面
+      },
     };
   },
   actions: {

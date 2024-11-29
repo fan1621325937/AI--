@@ -17,16 +17,23 @@ import DictTag from "@/components/DictTag";
 //时间小组件
 import timeBox from "@/components/timeBox";
 
+//通用图表
+import universalTable from "@/components/universalTable";
+//图表
+import chart from "@/components/chart";
+
 const components = {
-  Pagination,
-  RightToolbar,
-  Editor,
-  FileUpload,
-  ImageUpload,
-  ImagePreview,
-  TreeSelect,
-  DictTag,
-  timeBox,
+  Pagination, //分页
+  RightToolbar, //自定义表格工具组件
+  Editor, //富文本
+  FileUpload, //文件上传
+  ImageUpload, //图片上传
+  ImagePreview, //图片预览
+  TreeSelect, //树选择
+  DictTag, //字典标签
+  timeBox, //时间小组件
+  universalTable, //通用图表
+  chart, //图表
 };
 
 export default components;
