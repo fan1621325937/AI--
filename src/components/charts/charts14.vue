@@ -1,12 +1,9 @@
 <template>
-  <div></div>
+  <div>这是第一个图表</div>
 </template>
 
 <script setup>
 import { ref, reactive, toRefs, onMounted } from "vue";
-import jsVideo from "@/utils/jsVideo";
-
-// console.log(WebVideoCtrl, "WebVideoCtrl");
 </script>
 
 <style scoped lang="scss"></style>
