@@ -4,7 +4,10 @@ const layout = {
   1: {
     name: "默认布局1",
     value: 1,
-    icon: require("@/assets/images/templates/electronicSealTemplate1.png"),
+    icon: new URL(
+      "@/assets/images/templates/electronicSealTemplate1.png",
+      import.meta.url
+    ).href,
     data: [
       {
         value: 1, //插槽值
@@ -75,7 +78,10 @@ const layout = {
   2: {
     name: "默认布局2",
     value: 2,
-    icon: require("@/assets/images/templates/electronicSealTemplate2.png"),
+    icon: new URL(
+      "@/assets/images/templates/electronicSealTemplate2.png",
+      import.meta.url
+    ).href,
     data: [
       {
         value: 1,
@@ -146,7 +152,10 @@ const layout = {
   3: {
     name: "默认布局3",
     value: 3,
-    icon: require("@/assets/images/templates/electronicSealTemplate3.png"),
+    icon: new URL(
+      "@/assets/images/templates/electronicSealTemplate3.png",
+      import.meta.url
+    ).href,
     data: [
       {
         value: 1,
@@ -217,7 +226,10 @@ const layout = {
   4: {
     name: "默认布局4",
     value: 4,
-    icon: require("@/assets/images/templates/electronicSealTemplate4.png"),
+    icon: new URL(
+      "@/assets/images/templates/electronicSealTemplate4.png",
+      import.meta.url
+    ).href,
     data: [
       {
         value: 1,
@@ -288,7 +300,10 @@ const layout = {
   5: {
     name: "默认布局5",
     value: 5,
-    icon: require("@/assets/images/templates/electronicSealTemplate5.png"),
+    icon: new URL(
+      "@/assets/images/templates/electronicSealTemplate5.png",
+      import.meta.url
+    ).href,
     data: [
       {
         value: 1,
@@ -376,8 +391,11 @@ const layout = {
 
   6: {
     name: "默认布局1",
-    value: 1,
-    icon: require("@/assets/images/templates/electronicSealTemplate1.png"),
+    value: 6,
+    icon: new URL(
+      "@/assets/images/templates/electronicSealTemplate1.png",
+      import.meta.url
+    ).href,
     data: [
       {
         value: 1, //插槽值

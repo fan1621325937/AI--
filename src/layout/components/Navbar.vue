@@ -14,6 +14,7 @@
         <screenfull />
       </div> -->
       <div class="theme-switch h100 fcc g10">
+        <globalTemPlate />
         <screenfull />
         <el-icon class="theme-icon" @click="switchTheme">
           <Moon v-if="isDark" />
@@ -64,7 +65,7 @@ import useAppStore from "@/store/modules/app";
 import useUserStore from "@/store/modules/user";
 import useSettingsStore from "@/store/modules/settings";
 
-
+import globalTemPlate from "./globalTemPlate/index.vue";
 
 
 
