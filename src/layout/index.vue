@@ -24,6 +24,10 @@
       <div class="route-Wrapper h100 fsc">
         <topSidebar />
       </div>
+      <!-- 平台布局按钮 -->
+      <!-- <div class="h100 fcc">
+        <globalTemPlate />
+      </div> -->
       <!-- 个人中心 -->
       <div class="navbar-item h100 fsc">
         <navbar />
@@ -50,6 +54,7 @@
 
 <script setup>
 import { useWindowSize } from "@vueuse/core";
+import globalTemPlate from "./components/globalTemPlate/index.vue";
 import Sidebar from "./components/Sidebar/index.vue";
 import {
   AppMain,
@@ -162,7 +167,6 @@ function setLayout() {
   width: 100vw;
   height: 100vh;
   padding: 0px 20px 0px 20px;
-
 }
 
 // 顶部

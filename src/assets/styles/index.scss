@@ -199,7 +199,6 @@ div:focus {
 //   }
 // }
 
-
 ::-webkit-scrollbar {
   width: 4px;
   height: 8px;
@@ -214,4 +213,10 @@ div:focus {
 ::-webkit-scrollbar-thumb {
   background: var(--el-color-info-light-3);
   border-radius: 4px;
+}
+
+.none {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
