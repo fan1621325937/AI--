@@ -8,8 +8,10 @@
         :key="index"
         :style="{ gridArea: item.grid }"
         @click="clickCurrentTemplate(item)"
+        @dblclick="removeCurrentTemplate(item)"
       >
-        {{ item.tip }}
+        <img v-if="item.img" :src="item.img" alt="" />
+        <span v-else> {{ item.tip }}</span>
       </div>
     </div>
     <!-- 大屏选择 -->
@@ -37,27 +39,83 @@
     </div>
     <!-- 图表选择 -->
     <div class="chartsSelect fsc g10">
-      <div class="smallChart"></div> 
-      <div class="miniChart"></div>
+      <div class="smallChart fsc g10">
+        <img
+          v-for="(item, index) in systemChartConfigurationInfo.small"
+          :key="index"
+          :src="item.img"
+          alt=""
+          class="smallChartItem ChartItemHover"
+          @click="clickCurrentChart(item)"
+          :class="item.component == currentChart.component ? 'active' : ''"
+        />
+      </div>
+      <div class="miniChart fss g10">
+        <div class="w100 miniChartItemWrap">
+          <img
+            v-for="(item, index) in evenIndexItems"
+            :key="index"
+            :src="item.img"
+            alt=""
+            class="miniChartItem ChartItemHover"
+            @click="clickCurrentChart(item)"
+            :class="item.component == currentChart.component ? 'active' : ''"
+          />
+        </div>
+
+        <div class="w100 miniChartItemWrap">
+          <img
+            v-for="(item, index) in oddIndexItems"
+            :src="item.img"
+            :key="index"
+            alt=""
+            class="miniChartItem ChartItemHover"
+            @click="clickCurrentChart(item)"
+            :class="item.component == currentChart.component ? 'active' : ''"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ElMessage } from "element-plus";
 import { ref, reactive, toRefs, onMounted, nextTick } from "vue";
 import { charts, systemChartConfiguration } from "@/common/charts.js";
 import layout from "@/common/template.js";
 
 import manager from "@/store/modules/manager";
+import user from "@/store/modules/user";
+
+import { clearObjectValues } from "@/utils/customFunctions";
 
 //let const
 // 获取平台值
 const managerStore = manager();
+const userStore = user();
+
 //let const
 
 //computed
 //系统平台值
 let platformDictValue = computed(() => managerStore.platformDictValue);
+let userId = computed(() => userStore.id);
+
+//计算偶数项
+let evenIndexItems = computed(() => {
+  return systemChartConfigurationInfo.mini.filter((item, index) => {
+    return index % 2 == 0;
+  });
+});
+
+//计算奇数项
+let oddIndexItems = computed(() => {
+  return systemChartConfigurationInfo.mini.filter((item, index) => {
+    return index % 2 == 1;
+  });
+});
+
 //computed
 
 // ref reactive
@@ -73,12 +131,21 @@ let layoutInfo = reactive({
 const systemChartConfigurationInfo = reactive({
   ...systemChartConfiguration[managerStore.platformDictValue],
 });
-console.log(systemChartConfigurationInfo, "getCurrentTemplate");
 
 //当前模板
 let currentTemplate = ref(1);
+
+//当前点击的图表
+let currentChart = ref({
+  component: undefined,
+  img: undefined,
+  name: undefined,
+  size: undefined,
+});
+
 //说明
 let tip = ref("选择下方图表后,在点击上方选择(可替换模块)即可设置图表位置");
+
 // ref reactive
 
 // function
@@ -86,21 +153,92 @@ let tip = ref("选择下方图表后,在点击上方选择(可替换模块)即�
 const setCurrentTemplate = (Template) => {
   currentTemplate.value = Template.value;
 };
+//删除当前模板
+const removeCurrentTemplate = (item) => {
+  item.component = undefined;
+  item.img = undefined;
+};
 //点击当前模板
 const clickCurrentTemplate = (item) => {
-  console.log(item);
+  //去除不可编辑区域
+  if (item.disabled) {
+    return;
+  }
+  //检查点击的图表是否被应用
+  if (
+    currentChart.value.component &&
+    currentChart.value.img &&
+    !checkCurrentChartInt() &&
+    checkSize(item)
+  ) {
+    item.component = currentChart.value.component;
+    item.img = currentChart.value.img;
+    //清空当前图表
+    clearCurrentChart();
+  } else {
+    return;
+  }
 };
+
+const checkSize = (item) => {
+  let is = false;
+  is = item.size == currentChart.value.size ? true : false;
+  if (!is) {
+    ElMessage({
+      message: "图表尺寸不匹配",
+      type: "warning",
+    });
+  }
+
+  return is;
+};
+
+//检查当前图表有没有被应用
+const checkCurrentChartInt = () => {
+  let is = false;
+  layoutInfo[currentTemplate.value].data.forEach((element) => {
+    if (element.component && element.component == currentChart.value.component) {
+      ElMessage({
+        message: "该图表已被应用",
+        type: "warning",
+      });
+      is = true;
+    }
+  });
+  return is;
+};
+//清空当前选择的图表
+const clearCurrentChart = () => {
+  //清除当前图表
+  currentChart.value = clearObjectValues(currentChart.value);
+};
+//点击当前图表
+const clickCurrentChart = (item) => {
+  currentChart.value = item;
+};
+
 //保存当前模板
-const saveSetting = () => {};
+const saveSetting = () => {
+  let arr = [];
+  layoutInfo[currentTemplate.value].data.forEach((element) => {
+    arr.push({
+      userId: userId.value,
+      layoutInfoId: currentTemplate.value,
+      chartOrder: element.value,
+      chartsKey: element.component,
+      systemId: platformDictValue.value,
+    });
+  });
+};
 //根据平台值获取当前可用的模板
 const getCurrentTemplate = () => {
   for (const key in systemChartConfigurationInfo) {
-    if (
-      Object.prototype.hasOwnProperty.call(systemChartConfigurationInfo, key)
-    ) {
+    if (Object.prototype.hasOwnProperty.call(systemChartConfigurationInfo, key)) {
       systemChartConfigurationInfo[key] = systemChartConfigurationInfo[key].map(
         (item) => {
-          return chartInfo[item];
+          return {
+            ...chartInfo[item],
+          };
         }
       );
     }
@@ -129,6 +267,9 @@ onMounted(() => {
   width: calc(75% - 10px);
   height: calc(62% - 10px);
   display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(4, calc(25% - 8px));
+  grid-template-rows: repeat(3, calc(33.33% - 8px));
 }
 
 .templateItem {
@@ -143,6 +284,10 @@ onMounted(() => {
 
   &.active {
     background-color: var(--el-color-info-light-3);
+  }
+  img {
+    height: 100%;
+    width: 100%;
   }
 }
 
@@ -162,15 +307,41 @@ onMounted(() => {
 .chartsSelect {
   width: 100%;
   height: calc(38% - 10px);
-  background-color: red;
 }
 
-.smallChart{
-  
+.smallChart {
+  width: 270px;
+  height: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
- .miniChart{
 
- }
+.smallChartItem {
+  width: 270px !important;
+  height: 100%;
+  flex-shrink: 0; /* 防止元素缩小 */
+}
+
+.miniChart {
+  width: calc(100% - 280px);
+  height: 100%;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.miniChartItemWrap {
+  display: flex;
+  gap: 10px;
+  height: calc(50% - 10px);
+}
+
+.miniChartItem {
+  width: 270px !important;
+  height: 100%;
+  flex-shrink: 0; /* 防止元素缩小 */
+}
 
 .templateList {
   display: flex;
@@ -192,6 +363,24 @@ onMounted(() => {
 
   &.active {
     background: var(--el-color-info-light-3);
+  }
+}
+
+.ChartItemHover {
+  &:hover {
+    border: 2px solid var(--el-color-info-light-3);
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.7;
+    background-color: var(--el-color-info-light-3);
+  }
+
+  &.active {
+    border: 2px solid var(--el-color-info-light-3);
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.7;
+    background-color: var(--el-color-info-light-3);
   }
 }
 </style>

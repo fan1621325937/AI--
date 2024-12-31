@@ -34,7 +34,7 @@ const charts = {
   4: {
     name: "最近报警抓拍",
     size: "mini",
-    component: "charts3",
+    component: "charts4",
     img: new URL("@/assets/images/charts/charts4.png", import.meta.url).href,
   },
   5: {
