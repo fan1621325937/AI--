@@ -5,10 +5,9 @@
       v-for="(item, index) in layoutInfo[currentTemplate].data"
       :key="index"
       :style="{ gridArea: item.grid }"
-      @click="clickCurrentTemplate(item)"
       @dblclick="removeCurrentTemplate(item)"
     >
-      {{ item.tip }}
+      {{ item.component }}
     </div>
   </div>
 </template>
@@ -56,14 +55,51 @@ const getNowTemplate = async () => {
     url: `/viscenter/layout/current/user/${userId.value}/${platformDictValue.value}`,
     method: "get",
   });
-  console.log(res, "res");
+  currentTemplate.value = res.data;
 };
+
+//根据布局获取布局详情
+const getLayoutDetail = async () => {
+  let res = await request({
+    url: `/viscenter/layout/detail/query?userId=${userId.value}&layoutInfoId=${currentTemplate.value}&systemId=${platformDictValue.value}`,
+    method: "get",
+  });
+  //处理当前布局
+  handlelayoutDetail(res.data);
+};
+
+//处理当前布局
+const handlelayoutDetail = async (data) => {
+  layoutInfo[currentTemplate.value].data.forEach((element) => {
+    data.forEach((item) => {
+      if (`chart${element.value}` == item.chartsKey) {
+        element.component = `charts${item.chartOrder}`;
+      }
+    });
+  });
+};
+
 // function
+
+//watch
+//监听平台值的变化
+watch(
+  () => managerStore.platformDictValue,
+  async () => {
+    //获取当前模板
+    await getNowTemplate();
+    //获取布局详情
+    await getLayoutDetail();
+  }
+);
+//watch
 
 // onMounted
 onMounted(async () => {
   //获取当前模板
   await getNowTemplate();
+  //获取布局详情
+  await getLayoutDetail();
 });
 // onMounted
 </script>
